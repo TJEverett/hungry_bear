@@ -22,4 +22,18 @@ describe('Construct Bear', () => {
     expect(fuzzy.sleep).toEqual(10);
     expect(fuzzy.mood).toEqual(100);
   });
+
+  test('should set interval property to 3000 on difficulty 1', () => {
+    expect(fuzzy.interval).toEqual(3000);
+  });
+
+  test('should set interval property to 2000 on difficulty 2', () => {
+    fuzzy = new Bear("fuzzy", 2);
+    expect(fuzzy.interval).toEqual(2000);
+  });
+
+  test('should set interval property to 1000 on difficulty 3', () => {
+    fuzzy = new Bear("fuzzy", 3);
+    expect(fuzzy.interval).toEqual(1000);
+  });
 });
