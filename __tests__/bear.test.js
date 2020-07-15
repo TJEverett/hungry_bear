@@ -32,3 +32,28 @@ describe('Construct Bear', () => {
     expect(fuzzy.interval).toEqual(1000);
   });
 });
+
+describe('Decrementing Food, Sleep, and Mood', () => {
+  jest.useFakeTimers();
+  let fuzzy;
+
+  beforeEach(function() {
+    fuzzy = new Bear("fuzzy", 3);
+  });
+
+  afterEach(function() {
+    jest.clearAllTimers();
+  });
+
+  test('check for correct food level loss', () => {
+    fuzzy.hunger();
+    jest.advanceTimersByTime(3500);
+    expect(fuzzy.food).toEqual(7);
+  });
+
+  test('check that food does not fall bellow 0', () => {
+    fuzzy.hunger();
+    jest.advanceTimersByTime(12500);
+    expect(fuzzy.food).toEqual(0);
+  });
+});
