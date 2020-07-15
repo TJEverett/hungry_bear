@@ -1,5 +1,5 @@
 export class Bear {
-  constructor(name, level){
+  constructor(name, level) {
     // level is 1 (easy), 2 (normal), or 3 (hard) exceptions are built as level 2.
     this.name = name;
     this.difficulty = level;
@@ -7,11 +7,11 @@ export class Bear {
     this.food = 10;
     this.sleep = 10;
     this.mood = 100;
-    this.setInterval();
+    this.intervalSet();
   }
 
-  setInterval() {
-    if(this.difficulty === 1) {
+  intervalSet() {
+    if (this.difficulty === 1) {
       this.interval = 3000;
     }else if (this.difficulty === 3) {
       this.interval = 1000;
