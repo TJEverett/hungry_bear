@@ -19,4 +19,13 @@ export class Bear {
       this.interval = 2000;
     }
   }
+
+  hunger() {
+    setInterval(() => {
+      this.food -= 1;
+      if(this.food < 0) {
+        this.food = 0;
+      }
+    }, this.interval);
+  }
 }
