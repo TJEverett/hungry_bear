@@ -1,15 +1,10 @@
 import { Bear } from './../src/bear.js';
 
 describe('Construct Bear', () => {
-  jest.useFakeTimers();
   let fuzzy;
 
   beforeEach(function() {
     fuzzy = new Bear("fuzzy", 1);
-  });
-
-  afterEach(function() {
-    jest.clearAllTimers();
   });
 
   test('should have a name and difficulty level of 1 when it is created', () => {
