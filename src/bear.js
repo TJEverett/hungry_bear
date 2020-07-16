@@ -28,4 +28,13 @@ export class Bear {
       }
     }, this.interval);
   }
+
+  tired() {
+    setInterval(() => {
+      this.sleep -= 1;
+      if (this.sleep < 0){
+        this.sleep = 0;
+      }
+    }, this.interval);
+  }
 }
