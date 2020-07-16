@@ -56,4 +56,16 @@ describe('Decrementing Food, Sleep, and Mood', () => {
     jest.advanceTimersByTime(12500);
     expect(fuzzy.food).toEqual(0);
   });
+
+  test('check for correct sleep level loss', () => {
+    fuzzy.tired();
+    jest.advanceTimersByTime(3500);
+    expect(fuzzy.sleep).toEqual(7);
+  });
+
+  test('check that sleep does not fall bellow 0', () => {
+    fuzzy.tired();
+    jest.advanceTimersByTime(12500);
+    expect(fuzzy.sleep).toEqual(0);
+  });
 });
