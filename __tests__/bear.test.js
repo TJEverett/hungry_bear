@@ -112,3 +112,20 @@ describe('Decrementing Food, Sleep, and Mood', () => {
     expect(fuzzy.mood).toEqual(0);
   });
 });
+
+describe('Increasing Food and Sleep', () => {
+  jest.useFakeTimers();
+  let fuzzy;
+
+  beforeEach(function() {
+    fuzzy = new Bear("fuzzy", 3);
+  });
+
+  afterEach(function() {
+    jest.clearAllTimers();
+  });
+
+  test('should have a property of cooldown with a default value of false', () => {
+    expect(fuzzy.cooldown).toEqual(false);
+  });
+});
