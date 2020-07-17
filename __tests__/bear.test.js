@@ -128,4 +128,31 @@ describe('Increasing Food and Sleep', () => {
   test('should have a property of cooldown with a default value of false', () => {
     expect(fuzzy.cooldown).toEqual(false);
   });
+
+  test('check that when adding food cooldown is set to true, then switches to false after 250 milliseconds', () => {
+    fuzzy.feed();
+    expect(fuzzy.cooldown).toEqual(true);
+    jest.advanceTimersByTime(251);
+    expect(fuzzy.cooldown).toEqual(false);
+  });
+
+  test('check that when adding food it goes up by 2', () => {
+    fuzzy.food = 5;
+    fuzzy.feed();
+    expect(fuzzy.food).toEqual(7);
+  });
+
+  test('check that when adding food the level does not go higher than 10', () => {
+    fuzzy.food = 9;
+    fuzzy.feed();
+    expect(fuzzy.food).toEqual(10);
+  });
+
+  test('check that you can not add food while cooldown is true', () => {
+    fuzzy.food = 5;
+    fuzzy.feed();
+    fuzzy.feed();
+    fuzzy.feed();
+    expect(fuzzy.food).toEqual(7);
+  });
 });
