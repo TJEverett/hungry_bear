@@ -7,6 +7,7 @@ export class Bear {
     this.food = 10;
     this.sleep = 10;
     this.mood = 100;
+    this.cooldown = false;
     this.intervalSet();
   }
 
