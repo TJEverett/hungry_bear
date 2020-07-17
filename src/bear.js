@@ -76,7 +76,7 @@ export class Bear {
   }
 
   feed() {
-    if(this.cooldown === false) {
+    if (this.cooldown === false) {
       this.food += 2;
       this.cooldown = true;
       setTimeout(() => {
@@ -87,5 +87,18 @@ export class Bear {
       }
     }
   }
-  
+
+  rest() {
+    if (this.cooldown === false) {
+      this.sleep += 2;
+      this.cooldown = true;
+      setTimeout(() => {
+        this.cooldown = false;
+      }, 250);
+      if (this.sleep > 10) {
+        this.sleep = 10;
+      }
+    }
+  }
+
 }
