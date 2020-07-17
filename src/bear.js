@@ -74,4 +74,18 @@ export class Bear {
       }
     }, this.interval);
   }
+
+  feed() {
+    if(this.cooldown === false) {
+      this.food += 2;
+      this.cooldown = true;
+      setTimeout(() => {
+        this.cooldown = false;
+      }, 250);
+      if (this.food > 10) {
+        this.food = 10;
+      }
+    }
+  }
+  
 }
