@@ -37,4 +37,40 @@ export class Bear {
       }
     }, this.interval);
   }
+
+  foodCheckMood() {
+    if (this.food > 5) {
+      return 1;
+    } else if (this.food < 1) {
+      return -10
+    } else {
+      return -1;
+    }
+  }
+
+  sleepCheckMood() {
+    if (this.sleep > 5) {
+      return 1;
+    } else if (this.sleep < 1) {
+      return -10;
+    } else {
+      return -1;
+    }
+  }
+
+  modifyMood() {
+    setInterval(() => {
+      let modifier = -1;
+      modifier += this.foodCheckMood();
+      modifier += this.sleepCheckMood();
+
+      this.mood += modifier;
+
+      if (this.mood > 100) {
+        this.mood = 100;
+      } else if (this.mood < 0) {
+        this.mood = 0;
+      }
+    }, this.interval);
+  }
 }
