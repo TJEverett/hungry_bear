@@ -68,4 +68,47 @@ describe('Decrementing Food, Sleep, and Mood', () => {
     jest.advanceTimersByTime(12500);
     expect(fuzzy.sleep).toEqual(0);
   });
+
+  test('check the 3 states of how food effects mood', () => {
+    fuzzy.food = 10;
+    expect(fuzzy.foodCheckMood()).toEqual(1);
+    fuzzy.food = 4;
+    expect(fuzzy.foodCheckMood()).toEqual(-1);
+    fuzzy.food = 0;
+    expect(fuzzy.foodCheckMood()).toEqual(-10);
+  });
+
+  test('check the 3 states of how sleep effects mood', () => {
+    fuzzy.sleep = 10;
+    expect(fuzzy.sleepCheckMood()).toEqual(1);
+    fuzzy.sleep = 4;
+    expect(fuzzy.sleepCheckMood()).toEqual(-1);
+    fuzzy.sleep = 0;
+    expect(fuzzy.sleepCheckMood()).toEqual(-10);
+  });
+
+  test('check that prototype to modify mood based on food and sleep works', () => {
+    fuzzy.mood = 50;
+    fuzzy.food = 3;
+    fuzzy.sleep = 3;
+    fuzzy.modifyMood();
+    jest.advanceTimersByTime(7500);
+    expect(fuzzy.mood).toEqual(29);
+  });
+
+  test('check that mood does not go above 100', () => {
+    fuzzy.mood = 99;
+    fuzzy.modifyMood();
+    jest.advanceTimersByTime(7500);
+    expect(fuzzy.mood).toEqual(100);
+  });
+
+  test('check that mood does not go bellow 0', () => {
+    fuzzy.mood = 17;
+    fuzzy.food = 0;
+    fuzzy.sleep = 0;
+    fuzzy.modifyMood();
+    jest.advanceTimersByTime(7500);
+    expect(fuzzy.mood).toEqual(0);
+  });
 });
