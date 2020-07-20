@@ -24,7 +24,7 @@ export class Bear {
   hunger() {
     setInterval(() => {
       this.food -= 1;
-      if(this.food < 0) {
+      if(this.food < 1) {
         this.food = 0;
       }
     }, this.interval);
@@ -33,7 +33,7 @@ export class Bear {
   tired() {
     setInterval(() => {
       this.sleep -= 1;
-      if (this.sleep < 0){
+      if (this.sleep < 1){
         this.sleep = 0;
       }
     }, this.interval);
@@ -69,7 +69,7 @@ export class Bear {
 
       if (this.mood > 100) {
         this.mood = 100;
-      } else if (this.mood < 0) {
+      } else if (this.mood < 1) {
         this.mood = 0;
       }
     }, this.interval);
