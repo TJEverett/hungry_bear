@@ -183,3 +183,42 @@ describe('Increasing Food and Sleep', () => {
     expect(fuzzy.sleep).toEqual(7);
   });
 });
+
+describe('Ending the Game', () => {
+  jest.useFakeTimers();
+  let fuzzy;
+
+  beforeEach(function() {
+    fuzzy = new Bear("fuzzy", 3);
+  });
+
+  afterEach(function() {
+    jest.clearAllTimers();
+  });
+
+  test('check that when run the prototype ends all interval loops', () => {
+    fuzzy.mood = 90;
+    fuzzy.hunger();
+    fuzzy.tired();
+    fuzzy.modifyMood();
+    jest.advanceTimersByTime(1100);
+    fuzzy.gameEnd();
+    jest.advanceTimersByTime(1100);
+    expect(fuzzy.food).toEqual(9);
+    expect(fuzzy.sleep).toEqual(9);
+    expect(fuzzy.mood).toEqual(91);
+  });
+
+  test('check that when mood hits 0 the game ends', () => {
+    fuzzy.food = 4;
+    fuzzy.sleep = 4
+    fuzzy.mood = 1;
+    fuzzy.hunger();
+    fuzzy.tired();
+    fuzzy.modifyMood();
+    jest.advanceTimersByTime(5100);
+    expect(fuzzy.food).toEqual(3);
+    expect(fuzzy.sleep).toEqual(3);
+    expect(fuzzy.mood).toEqual(0);
+  });
+});
