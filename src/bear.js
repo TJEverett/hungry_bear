@@ -9,6 +9,9 @@ export class Bear {
     this.mood = 100;
     this.cooldown = false;
     this.intervalSet();
+    this.foodInterval = 0;
+    this.sleepInterval = 0;
+    this.moodInterval = 0;
   }
 
   intervalSet() {
@@ -22,7 +25,7 @@ export class Bear {
   }
 
   hunger() {
-    setInterval(() => {
+    this.foodInterval = setInterval(() => {
       this.food -= 1;
       if(this.food < 1) {
         this.food = 0;
@@ -31,7 +34,7 @@ export class Bear {
   }
 
   tired() {
-    setInterval(() => {
+    this.sleepInterval = setInterval(() => {
       this.sleep -= 1;
       if (this.sleep < 1){
         this.sleep = 0;
@@ -60,7 +63,7 @@ export class Bear {
   }
 
   modifyMood() {
-    setInterval(() => {
+    this.moodInterval = setInterval(() => {
       let modifier = -1;
       modifier += this.foodCheckMood();
       modifier += this.sleepCheckMood();
@@ -71,6 +74,7 @@ export class Bear {
         this.mood = 100;
       } else if (this.mood < 1) {
         this.mood = 0;
+        this.gameEnd();
       }
     }, this.interval);
   }
@@ -99,6 +103,13 @@ export class Bear {
         this.sleep = 10;
       }
     }
+  }
+
+  gameEnd() {
+    clearInterval(this.foodInterval);
+    clearInterval(this.sleepInterval);
+    clearInterval(this.moodInterval);
+    console.log("Game Done");
   }
 
 }
